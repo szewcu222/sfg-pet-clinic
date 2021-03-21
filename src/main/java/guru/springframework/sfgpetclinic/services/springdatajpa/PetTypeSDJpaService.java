@@ -1,8 +1,11 @@
 package guru.springframework.sfgpetclinic.services.springdatajpa;
 
 import guru.springframework.sfgpetclinic.model.Pet;
+import guru.springframework.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.repositories.PetRepository;
+import guru.springframework.sfgpetclinic.repositories.PetTypeRepository;
 import guru.springframework.sfgpetclinic.services.PetService;
+import guru.springframework.sfgpetclinic.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -11,38 +14,38 @@ import java.util.Set;
 
 @Service
 @Profile("springdatajpa")
-public class PetTypeSDJpaService implements PetService {
+public class PetTypeSDJpaService implements PetTypeService {
 
-    private final PetRepository petRepository;
+    private final PetTypeRepository petTypeRepository;
 
-    public PetTypeSDJpaService(PetRepository petRepository) {
-        this.petRepository = petRepository;
+    public PetTypeSDJpaService(PetTypeRepository petTypeRepository) {
+        this.petTypeRepository = petTypeRepository;
     }
 
     @Override
-    public Set<Pet> findAll() {
-        Set<Pet> pets = new HashSet<>();
-        petRepository.findAll().forEach(pets::add);
-        return pets;
+    public Set<PetType> findAll() {
+        Set<PetType> petTypes = new HashSet<>();
+        petTypeRepository.findAll().forEach(petTypes::add);
+        return petTypes;
     }
 
     @Override
-    public Pet findById(Long id) {
-        return petRepository.findById(id).orElse(null);
+    public PetType findById(Long id) {
+        return petTypeRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Pet save(Pet pet) {
-        return petRepository.save(pet);
+    public PetType save(PetType petType) {
+        return petTypeRepository.save(petType);
     }
 
     @Override
-    public void delete(Pet pet) {
-        petRepository.delete(pet);
+    public void delete(PetType petType) {
+        petTypeRepository.delete(petType);
     }
 
     @Override
     public void deleteById(Long id) {
-        petRepository.deleteById(id);
+        petTypeRepository.deleteById(id);
     }
 }

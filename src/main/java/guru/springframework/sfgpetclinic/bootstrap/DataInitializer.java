@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 @Component
@@ -17,17 +18,22 @@ public class DataInitializer implements CommandLineRunner {
     private final PetService petService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
     @Autowired
-    public DataInitializer(OwnerMapService ownerMapService, VetMapService vetMapService, PetMapService petMapService, PetTypeMapService petTypeMapService, SpecialityMapService specialityMapService) {
+    public DataInitializer(OwnerService ownerMapService, VetService vetMapService, PetService petMapService,
+                           PetTypeService petTypeMapService, SpecialityService specialityMapService,
+                           VisitService visitService) {
         this.ownerService = ownerMapService;
         this.vetService = vetMapService;
         this.petService = petMapService;
         this.petTypeService = petTypeMapService;
         this.specialityService = specialityMapService;
+        this.visitService = visitService;
     }
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
         if(petTypeService.findAll().size() == 0) {
             loadData();
@@ -64,6 +70,7 @@ public class DataInitializer implements CommandLineRunner {
         owner1.setCity("Miami");
         owner1.setTelephone("1231231234");
 
+
         Pet mikesPet = new Pet();
         mikesPet.setName("Rosco");
         mikesPet.setPetType(dog);
@@ -91,6 +98,13 @@ public class DataInitializer implements CommandLineRunner {
 
         ownerService.save(owner2);
 
+        Visit catVisit = new Visit();
+        catVisit.setPet(fionasCat);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy kitty");
+
+        visitService.save(catVisit);
+
         System.out.println("Loaded Owners");
 
         Vet vet1 = new Vet();
@@ -106,6 +120,5 @@ public class DataInitializer implements CommandLineRunner {
         vetService.save(vet2);
 
         System.out.println("Loaded Vets");
-
     }
 }

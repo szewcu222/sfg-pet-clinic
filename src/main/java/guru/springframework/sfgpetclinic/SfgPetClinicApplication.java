@@ -1,6 +1,5 @@
 package guru.springframework.sfgpetclinic;
 
-import guru.springframework.sfgpetclinic.services.map.OwnerServiceMap;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

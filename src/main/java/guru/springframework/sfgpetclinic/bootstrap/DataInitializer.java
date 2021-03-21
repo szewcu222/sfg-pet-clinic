@@ -19,11 +19,11 @@ public class DataInitializer implements CommandLineRunner {
     private final SpecialityService specialityService;
 
     @Autowired
-    public DataInitializer(OwnerServiceMap ownerServiceMap, VetServiceMap vetServiceMap, PetServiceMap petServiceMap, PetTypeServiceMap petTypeServiceMap, SpecialityMapService specialityMapService) {
-        this.ownerService = ownerServiceMap;
-        this.vetService = vetServiceMap;
-        this.petService = petServiceMap;
-        this.petTypeService = petTypeServiceMap;
+    public DataInitializer(OwnerMapService ownerMapService, VetMapService vetMapService, PetMapService petMapService, PetTypeMapService petTypeMapService, SpecialityMapService specialityMapService) {
+        this.ownerService = ownerMapService;
+        this.vetService = vetMapService;
+        this.petService = petMapService;
+        this.petTypeService = petTypeMapService;
         this.specialityService = specialityMapService;
     }
 

@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,12 +35,14 @@ class OwnerControllerTest {
 
     @BeforeEach
     void setUp() {
-        owners = new HashSet(){{add(Owner.builder().id(1L).build());
-                                add(Owner.builder().id(2L).build());}};
+        owners =  new HashSet<>(Arrays.asList(
+                Owner.builder().id(1L).build(),
+                Owner.builder().id(2L).build()));
 
         mockMvc = MockMvcBuilders
                 .standaloneSetup(controller)
                 .build();
+        Owner own = new Owner(){{setId(1L);}};
     }
 
     @Test

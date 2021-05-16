@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @Profile("springdatajpa")
@@ -31,6 +29,21 @@ public class OwnerSDJpaService implements OwnerService {
     @Override
     public Owner findByLastName(String lastName) {
         return ownerRepository.findByLastName(lastName);
+    }
+
+    @Override
+    public List<Owner> findByLastNameIgnoreCaseAllIgnoreCase(String lastName) {
+        return ownerRepository.findByLastNameIgnoreCaseAllIgnoreCase(lastName);
+    }
+
+    @Override
+    public Collection<Owner> findByLastNameContainingIgnoreCase(String lastName) {
+        return ownerRepository.findByLastNameContainingIgnoreCase(lastName);
+    }
+
+    @Override
+    public Collection<Owner> findAllByLastNameLike(String lastName) {
+        return ownerRepository.findAllByLastNameLike(lastName);
     }
 
     @Override

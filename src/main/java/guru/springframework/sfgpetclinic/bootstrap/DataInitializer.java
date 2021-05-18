@@ -119,6 +119,15 @@ public class DataInitializer implements CommandLineRunner {
         vet2.getSpecialities().add(surgery);
         vetService.save(vet2);
 
+        Owner owner0 = new Owner();
+        owner0.setFirstName("MAREK");
+        owner0.setLastName("BEZPSOWY");
+        owner0.setAddress("Leszyczna");
+        owner0.setCity("Pantalowice");
+        owner0.setTelephone("99999");
+
+        ownerService.save(owner0);
+
         System.out.println("Loaded Vets");
     }
 }

@@ -1,12 +1,15 @@
 package guru.springframework.sfgpetclinic.services.springdatajpa;
 
 import guru.springframework.sfgpetclinic.model.Pet;
+import guru.springframework.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.repositories.PetRepository;
+import guru.springframework.sfgpetclinic.repositories.PetTypeRepository;
 import guru.springframework.sfgpetclinic.services.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,10 +18,12 @@ import java.util.Set;
 public class PetSDJpaService implements PetService {
 
     private final PetRepository petRepository;
+    private final PetTypeRepository petTypeRepository;
 
     @Autowired
-    public PetSDJpaService(PetRepository petRepository) {
+    public PetSDJpaService(PetRepository petRepository, PetTypeRepository petTypeRepository) {
         this.petRepository = petRepository;
+        this.petTypeRepository = petTypeRepository;
     }
 
     @Override
